@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saalim Ali Naqvi - Web Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a192f;
+            color: #ccd6f6;
+        }
+        /* Custom styles for animations and effects */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background-color: #64ffda;
+            margin-top: 10px;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(100, 255, 218, 0.1), 0 4px 6px -2px rgba(100, 255, 218, 0.05);
+        }
+        .project-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3), 0 10px 10px -5px rgba(0,0,0,0.1);
+        }
+        .project-card .project-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #64ffda;
+            box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.3);
+        }
+        .btn-primary {
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #64ffda;
+            color: #0a192f;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #64ffda;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        #navbar.scrolled {
+            background-color: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+        }
+    </style>
+</head>
+<body class="antialiased leading-relaxed">
+
+    <!-- Particle background -->
+    <canvas id="particle-canvas" class="fixed top-0 left-0 -z-10"></canvas>
+
+    <!-- Header & Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-[#64ffda]">SAN</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-sm hover:text-[#64ffda] transition-colors">About</a>
+                <a href="#skills" class="text-sm hover:text-[#64ffda] transition-colors">Skills</a>
+                <a href="#projects" class="text-sm hover:text-[#64ffda] transition-colors">Projects</a>
+                <a href="#contact" class="text-sm hover:text-[#64ffda] transition-colors">Contact</a>
+            </nav>
+             <a href="https://drive.google.com/file/d/1fASXJQL-UVsqaYf9p5iyOeHXaq0HFXoj/view?usp=sharing" target="_blank" class="hidden md:block text-sm border border-[#64ffda] text-[#64ffda] px-4 py-2 rounded-md hover:bg-[#64ffda] hover:text-[#0a192f] transition-all duration-300">Resume</a>
+            <button id="mobile-menu-btn" class="md:hidden z-50">
+                <svg class="w-6 h-6 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center space-y-8">
+            <a href="#about" class="text-2xl hover:text-[#64ffda] transition-colors mobile-link">About</a>
+            <a href="#skills" class="text-2xl hover:text-[#64ffda] transition-colors mobile-link">Skills</a>
+            <a href="#projects" class="text-2xl hover:text-[#64ffda] transition-colors mobile-link">Projects</a>
+            <a href="#contact" class="text-2xl hover:text-[#64ffda] transition-colors mobile-link">Contact</a>
+             <a href="https://drive.google.com/file/d/1fASXJQL-UVsqaYf9p5iyOeHXaq0HFXoj/view?usp=sharing" target="_blank" class="mt-4 text-xl border border-[#64ffda] text-[#64ffda] px-6 py-3 rounded-md hover:bg-[#64ffda] hover:text-[#0a192f] transition-all duration-300">Resume</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex flex-col justify-center items-start">
+            <div class="max-w-3xl">
+                <p class="text-[#64ffda] text-lg mb-4 fade-in-up" style="transition-delay: 100ms;">Hi, my name is</p>
+                <h1 class="text-4xl md:text-7xl font-bold text-[#ccd6f6] mb-4 fade-in-up" style="transition-delay: 200ms;">Saalim Ali Naqvi.</h1>
+                <h2 class="text-3xl md:text-6xl font-bold text-[#8892b0] mb-8 fade-in-up" style="transition-delay: 300ms;">I build things for the web.</h2>
+                <p class="max-w-xl text-[#8892b0] mb-8 fade-in-up" style="transition-delay: 400ms;">
+                    I'm a passionate <span id="typing-text" class="text-[#64ffda]"></span><span class="typing-cursor"></span> specializing in creating responsive, user-friendly websites and scalable web applications.
+                </p>
+                <a href="#contact" class="btn-primary text-[#64ffda] border border-[#64ffda] rounded-md px-8 py-4 text-lg font-medium fade-in-up" style="transition-delay: 500ms;">Get In Touch</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24">
+            <h2 class="section-title text-3xl font-bold mb-12 fade-in-up">About Me</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-3 fade-in-up" style="transition-delay: 100ms;">
+                    <p class="mb-4 text-[#8892b0]">Hello! I'm Saalim, a web developer with a passion for building interactive and engaging digital experiences. My journey has taken me from game development with Unity and C# to creating modern, responsive websites for companies like Next Soft Media and SimRay Digital.</p>
+                    <p class="mb-4 text-[#8892b0]">I thrive on collaborating with teams to implement dynamic features, improve user experience, and optimize for performance and SEO. I enjoy working across the full stack, from crafting beautiful front-end interfaces to building scalable and secure back-end solutions.</p>
+                     <p class="text-[#8892b0]">Here are a few technologies I’ve been working with recently:</p>
+                    <ul class="grid grid-cols-2 gap-2 mt-4 text-sm text-[#8892b0]">
+                        <li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>React.js</li>
+                        <li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>Node.js & Express</li>
+                        <li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>WordPress</li>
+                        <li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>MongoDB</li>
+                        <li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>PostgreSQL</li>
+                        <li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>Git & GitHub</li>
+                    </ul>
+                </div>
+                <div class="md:col-span-2 flex justify-center fade-in-up" style="transition-delay: 200ms;">
+                    <div class="w-64 h-64 md:w-80 md:h-80 relative group">
+                        <div class="absolute inset-0 bg-[#64ffda] rounded-lg transform rotate-3 group-hover:rotate-0 transition-transform duration-300"></div>
+                        <img src="https://placehold.co/400x400/0a192f/ccd6f6?text=SA" alt="Saalim Ali Naqvi" class="absolute inset-0 w-full h-full object-cover rounded-lg z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24">
+            <h2 class="section-title text-3xl font-bold mb-12 fade-in-up">My Skills</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="skill-card bg-[#112240] p-6 rounded-lg text-center flex flex-col items-center justify-center transition-all duration-300 fade-in-up">
+                    <svg class="w-16 h-16 mb-4 text-[#64ffda]" xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.23174 23 20.46348">
+                      <title>React Logo</title>
+                      <circle cx="0" cy="0" r="2.05" fill="currentColor"/>
+                      <g stroke="currentColor" stroke-width="1" fill="none">
+                        <ellipse rx="11" ry="4.2"/>
+                        <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
+                        <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+                      </g>
+                    </svg>
+                    <h3 class="font-semibold">React.js</h3>
+                </div>
+                <div class="skill-card bg-[#112240] p-6 rounded-lg text-center flex flex-col items-center justify-center transition-all duration-300 fade-in-up" style="transition-delay: 50ms;">
+                    <svg class="w-16 h-16 mb-4 text-[#64ffda]" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>WordPress</title><path d="M4.316 14.28c.348.91.93 1.632 1.62 2.22c.672.588 1.428.948 2.22 1.152c.108.024.216.036.324.036c.252 0 .504-.06.72-.192c.3-.18.456-.492.456-.888V9.336c0-.396-.156-.708-.456-.888c-.3-.18-.66-.216-.996-.108l-2.676.852c.12-.9.456-1.74.984-2.484c.54-.756 1.2-1.356 2.016-1.8c.816-.444 1.692-.66 2.628-.66c1.02 0 1.944.276 2.772.828c.828.552 1.512 1.296 2.052 2.232c.54 1.056.816 2.208.816 3.468c0 .336.036.684.096 1.056c.072.372.132.696.192.972h-4.32c-.108-.348-.168-.684-.18-.996c-.024-.324-.036-.6-.036-.828c0-.624-.108-1.164-.324-1.62c-.216-.456-.54-.828-.948-1.092c-.408-.264-.888-.396-1.428-.396c-.492 0-.936.144-1.332.42c-.396.276-.708.66-.924 1.152c-.228.492-.348 1.044-.348 1.644v5.388c0 .6.12 1.128.36 1.596c.24.468.564.84.972 1.128c.408.288.876.432 1.392.432c.612 0 1.176-.192 1.704-.576c.492-.348.888-.792 1.2-1.344l2.196 1.428c-.588.852-1.32 1.512-2.208 1.98c-.888.468-1.86.708-2.916.708c-1.224 0-2.328-.324-3.324-.972c-1.008-.648-1.8-1.536-2.376-2.664c-.42-.804-.732-1.656-.936-2.556L0 12l4.316 2.28z"/></svg>
+                    <h3 class="font-semibold">WordPress</h3>
+                </div>
+                 <div class="skill-card bg-[#112240] p-6 rounded-lg text-center flex flex-col items-center justify-center transition-all duration-300 fade-in-up" style="transition-delay: 100ms;">
+                    <svg class="w-16 h-16 mb-4 text-[#64ffda]" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Node.js</title><path d="M11.996 0a12 12 0 1 0 .004 24a12 12 0 0 0-.004-24zM8.03 5.305h2.124l.696 2.055c.276.816.48 1.416.576 1.764h.048c-.036-.312-.048-1.032-.048-2.184V5.305h2.1v9.564h-2.016l-.72-2.184a7.35 7.35 0 0 1-.576-1.8h-.048c.024.432.048 1.14.048 2.136v1.848h-2.184zm7.98 5.772c0-1.488-.384-2.688-1.152-3.6a3.83 3.83 0 0 0-3.012-1.392c-1.26 0-2.268.456-3.024 1.368c-.756.912-1.14 2.112-1.14 3.612c0 1.464.384 2.664 1.152 3.588c.768.912 1.776 1.368 3.024 1.368c1.224 0 2.232-.456 3-1.356c.768-.912 1.152-2.112 1.152-3.6zm-2.208.012c0 .876-.192 1.572-.576 2.088c-.384.516-.948.78-1.692.78c-.744 0-1.308-.264-1.692-.78c-.384-.516-.576-1.212-.576-2.088c0-.864.192-1.56.576-2.076c.384-.516.948-.78 1.692-.78c.744 0 1.308.264 1.692.78c.384.516.576 1.212.576 2.076z"/></svg>
+                    <h3 class="font-semibold">Node.js</h3>
+                </div>
+                <div class="skill-card bg-[#112240] p-6 rounded-lg text-center flex flex-col items-center justify-center transition-all duration-300 fade-in-up" style="transition-delay: 150ms;">
+                    <svg class="w-16 h-16 mb-4 text-[#64ffda]" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>MongoDB</title><path d="M12.72.3A1.44 1.44 0 0012 0a1.44 1.44 0 00-.72.3L4.32 5.58a1.44 1.44 0 00-.72 1.14V17.4c0 .48.24.96.72 1.2l6.96 5.16a1.44 1.44 0 001.44 0l6.96-5.16a1.44 1.44 0 00.72-1.2V6.72c0-.48-.24-.96-.72-1.14L12.72.3zM12 2.22l5.76 4.32v.24c-1.2-.72-2.88-.96-4.56-.96-3.36 0-6.48 1.44-6.48 3.36v7.08c0 .6-1.08.6-1.08 0V6.72L12 2.22zm0 19.56l-5.76-4.32V7.98c0-1.92 3.12-3.36 6.48-3.36 1.68 0 3.36.24 4.56.96v9.72L12 21.78z"/></svg>
+                    <h3 class="font-semibold">MongoDB</h3>
+                </div>
+                <div class="skill-card bg-[#112240] p-6 rounded-lg text-center flex flex-col items-center justify-center transition-all duration-300 fade-in-up" style="transition-delay: 200ms;">
+                    <svg class="w-16 h-16 mb-4 text-[#64ffda]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                    <h3 class="font-semibold">Git/GitHub</h3>
+                </div>
+                <div class="skill-card bg-[#112240] p-6 rounded-lg text-center flex flex-col items-center justify-center transition-all duration-300 fade-in-up" style="transition-delay: 250ms;">
+                    <svg class="w-16 h-16 mb-4 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <h3 class="font-semibold">Technical SEO</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24">
+            <h2 class="section-title text-3xl font-bold mb-12 fade-in-up">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="project-card bg-[#112240] rounded-lg overflow-hidden group fade-in-up">
+                    <div class="relative">
+                        <img src="Images/nsm.png" alt="Next Soft Media" class="w-full h-auto">
+                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
+                            <p class="text-center text-sm text-[#ccd6f6]">A professional website for a software development and digital marketing company.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-[#ccd6f6] mb-2">Next Soft Media</h3>
+                        <div class="flex space-x-4">
+                            <a href="https://www.nextsoftmedia.com/" target="_blank" class="hover:text-[#64ffda] transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="project-card bg-[#112240] rounded-lg overflow-hidden group fade-in-up" style="transition-delay: 100ms;">
+                    <div class="relative">
+                        <img src="Images/lushh.png" alt="Lushh Salon" class="w-full h-auto">
+                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
+                            <p class="text-center text-sm text-[#ccd6f6]">An elegant and responsive business website for a modern beauty salon.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-[#ccd6f6] mb-2">Lushh Salon</h3>
+                        <div class="flex space-x-4">
+                             <a href="https://www.lushhsalon.com/" target="_blank" class="hover:text-[#64ffda] transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card 3 -->
+                 <div class="project-card bg-[#112240] rounded-lg overflow-hidden group fade-in-up" style="transition-delay: 200ms;">
+                    <div class="relative">
+                        <img src="Images/msg.png" alt="The MSG Foundation" class="w-full h-auto">
+                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
+                            <p class="text-center text-sm text-[#ccd6f6]">A clean, informative, and accessible website for a non-profit organization.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-[#ccd6f6] mb-2">The MSG Foundation</h3>
+                        <div class="flex space-x-4">
+                             <a href="https://www.themsgfoundation.org/" target="_blank" class="hover:text-[#64ffda] transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card 4 -->
+                <div class="project-card bg-[#112240] rounded-lg overflow-hidden group fade-in-up" style="transition-delay: 300ms;">
+                    <div class="relative">
+                        <img src="Images/concave.png" alt="Concave Design" class="w-full h-auto">
+                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
+                            <p class="text-center text-sm text-[#ccd6f6]">A stylish portfolio website for an interior design company.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-[#ccd6f6] mb-2">Concave Design</h3>
+                        <div class="flex space-x-4">
+                             <a href="https://concavedesign.com/" target="_blank" class="hover:text-[#64ffda] transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Project Card 5 -->
+                <div class="project-card bg-[#112240] rounded-lg overflow-hidden group fade-in-up" style="transition-delay: 400ms;">
+                    <div class="relative">
+                        <img src="Images/datadigger.png" alt="Data Digger Equipments" class="w-full h-auto">
+                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
+                            <p class="text-center text-sm text-[#ccd6f6]">A commercial website for an industrial equipment supplier.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-[#ccd6f6] mb-2">Data Digger Equipments</h3>
+                        <div class="flex space-x-4">
+                             <a href="https://www.datadiggerequipments.com/" target="_blank" class="hover:text-[#64ffda] transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Project Card 6 -->
+                <div class="project-card bg-[#112240] rounded-lg overflow-hidden group fade-in-up" style="transition-delay: 500ms;">
+                    <div class="relative">
+                        <img src="Images/dupak.png" alt="Prototype Dupak" class="w-full h-auto">
+                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
+                            <p class="text-center text-sm text-[#ccd6f6]">A prototype web application deployed on Netlify.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-[#ccd6f6] mb-2">Prototype Dupak</h3>
+                        <div class="flex space-x-4">
+                             <a href="https://prototype-dupak.netlify.app/" target="_blank" class="hover:text-[#64ffda] transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Project Card 7 -->
+                <div class="project-card bg-[#112240] rounded-lg overflow-hidden group fade-in-up" style="transition-delay: 600ms;">
+                    <div class="relative">
+                        <img src="Images/Rcretive.png" alt="R Creative Interior" class="w-full h-auto">
+                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
+                            <p class="text-center text-sm text-[#ccd6f6]">A creative portfolio for an interior design studio.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-[#ccd6f6] mb-2">R Creative Interior</h3>
+                        <div class="flex space-x-4">
+                             <a href="https://www.rcreativeinterior.com/" target="_blank" class="hover:text-[#64ffda] transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Project Card 8 -->
+                <div class="project-card bg-[#112240] rounded-lg overflow-hidden group fade-in-up" style="transition-delay: 700ms;">
+                    <div class="relative">
+                        <img src="Images/simray.png" alt="Simray Digital" class="w-full h-auto">
+                        <div class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
+                            <p class="text-center text-sm text-[#ccd6f6]">A professional website for a digital marketing agency.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-[#ccd6f6] mb-2">Simray Digital</h3>
+                        <div class="flex space-x-4">
+                             <a href="https://www.simraydigital.com/" target="_blank" class="hover:text-[#64ffda] transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 text-center">
+             <h2 class="text-2xl font-semibold text-[#ccd6f6] mb-2 fade-in-up">Get In Touch</h2>
+             <p class="max-w-xl mx-auto text-[#8892b0] mb-8 fade-in-up" style="transition-delay: 100ms;">
+                My inbox is always open. Whether you have a question, a project idea, or just want to say hi, I’ll get back to you!
+            </p>
+             <a href="mailto:saalimalinaqvi@outlook.com" class="btn-primary text-[#64ffda] border border-[#64ffda] rounded-md px-8 py-4 text-lg font-medium fade-in-up" style="transition-delay: 200ms;">Say Hello</a>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="py-6 text-center">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="#" target="_blank" class="text-[#8892b0] hover:text-[#64ffda] transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+            <a href="#" target="_blank" class="text-[#8892b0] hover:text-[#64ffda] transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.79 0 0 .79 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46c.98 0 1.77-.79 1.77-1.77V1.77C24 .79 23.21 0 22.23 0zM7.06 20.45H3.53V9h3.53v11.45zM5.3 7.52c-1.11 0-2.01-.9-2.01-2.01s.9-2.01 2.01-2.01 2.01.9 2.01 2.01c0 1.11-.9 2.01-2.01 2.01zm15.15 12.93h-3.53v-5.6c0-1.34-.02-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.7H9.27V9h3.38v1.54h.05c.47-.88 1.61-1.8 3.33-1.8 3.56 0 4.22 2.34 4.22 5.38v6.33z"/></svg></a>
+            <a href="mailto:saalimalinaqvi@outlook.com" class="text-[#8892b0] hover:text-[#64ffda] transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></a>
+        </div>
+        <p class="text-xs text-[#8892b0]">Designed & Built by Saalim Ali Naqvi</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Particle System Logic ---
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+
+            function setCanvasSize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            setCanvasSize();
+
+            let particlesArray;
+
+            // Mouse position
+            const mouse = {
+                x: null,
+                y: null,
+                radius: (canvas.height/120) * (canvas.width/120)
+            }
+
+            window.addEventListener('mousemove', (event) => {
+                mouse.x = event.x;
+                mouse.y = event.y;
+            });
+
+             window.addEventListener('mouseout', () => {
+                mouse.x = undefined;
+                mouse.y = undefined;
+            });
+
+            // Create particle
+            class Particle {
+                constructor(x, y, directionX, directionY, size, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.directionX = directionX;
+                    this.directionY = directionY;
+                    this.size = size;
+                    this.originalSize = size;
+                    this.color = color;
+                    this.pulseSpeed = Math.random() * 0.02 + 0.005;
+                    this.isShootingStar = Math.random() < 0.005;
+                    if (this.isShootingStar) {
+                        this.directionX *= 15;
+                        this.directionY *= 15;
+                        this.size *= 2;
+                    }
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+
+                update() {
+                    // Pulsating effect
+                    this.size = this.originalSize + Math.sin(Date.now() * this.pulseSpeed) * (this.originalSize / 4);
+                    
+                    // Reset shooting stars
+                    if (this.isShootingStar && (this.x > canvas.width + 10 || this.x < -10 || this.y > canvas.height + 10 || this.y < -10)) {
+                        Object.assign(this, createParticle());
+                    }
+
+                    // Wall collision
+                    if (!this.isShootingStar) {
+                        if (this.x > canvas.width || this.x < 0) {
+                            this.directionX = -this.directionX;
+                        }
+                        if (this.y > canvas.height || this.y < 0) {
+                            this.directionY = -this.directionY;
+                        }
+                    }
+
+                    // Mouse interaction
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx*dx + dy*dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius * 2.5;
+                    // Repel when close, attract when further
+                    if (distance < maxDistance){
+                        let force = (maxDistance - distance) / maxDistance;
+                        // Repel
+                        if (distance < mouse.radius) {
+                             this.x -= forceDirectionX * force * 2;
+                             this.y -= forceDirectionY * force * 2;
+                        } else { // Attract
+                             this.x += forceDirectionX * force * 0.1;
+                             this.y += forceDirectionY * force * 0.1;
+                        }
+                    }
+                    
+                    // Move particle
+                    this.x += this.directionX;
+                    this.y += this.directionY;
+                    this.draw();
+                }
+            }
+            
+            function createParticle(i) {
+                let size = (Math.random() * 1.2) + 0.3;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .3) - .15;
+                let directionY = (Math.random() * .3) - .15;
+                let colorOptions = ['#8892b0', '#64ffda', '#ccd6f6'];
+                let color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+                return { x, y, directionX, directionY, size, color };
+            }
+
+            function init() {
+                particlesArray = [];
+                let numberOfParticles = (canvas.height * canvas.width) / 8000;
+                for (let i = 0; i < numberOfParticles; i++) {
+                    const { x, y, directionX, directionY, size, color } = createParticle(i);
+                    particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+                }
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                ctx.clearRect(0,0,innerWidth, innerHeight);
+
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                }
+                connect();
+            }
+
+            function connect(){
+                let opacityValue = 1;
+                for (let a = 0; a < particlesArray.length; a++) {
+                    for (let b = a; b < particlesArray.length; b++) {
+                        let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                        + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                        if (distance < (canvas.width/8) * (canvas.height/8)) {
+                            opacityValue = 1 - (distance/20000);
+                            ctx.strokeStyle='rgba(136, 146, 176,' + opacityValue * 0.3 + ')';
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            init();
+            animate();
+
+             window.addEventListener('resize', () => {
+                setCanvasSize();
+                mouse.radius = (canvas.height/120) * (canvas.width/120);
+                init();
+            });
+
+
+            // Typing animation
+            const typingText = document.getElementById('typing-text');
+            const words = ["Web Developer", "Full-Stack Engineer", "Problem Solver", "Creative Thinker"];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function type() {
+                const currentWord = words[wordIndex];
+                if (isDeleting) {
+                    typingText.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingText.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    setTimeout(() => isDeleting = true, 2000);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+
+                const typeSpeed = isDeleting ? 100 : 200;
+                setTimeout(type, typeSpeed);
+            }
+            type();
+
+            // Fade-in on scroll animation
+            const faders = document.querySelectorAll('.fade-in-up');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            const toggleMenu = () => {
+                mobileMenu.classList.toggle('hidden');
+                 mobileMenuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
+                    ? `<svg class="w-6 h-6 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>`
+                    : `<svg class="w-6 h-6 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+            };
+
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+        });
+    </script>
+</body>
+</html>
