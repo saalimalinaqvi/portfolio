@@ -25,8 +25,7 @@ export default function TechMarquee() {
 
     let rafId: number;
     let lastTime = performance.now();
-
-    const speed = 0.18; // 🔥 refined, slow, premium
+    const speed = 0.18;
 
     const animate = (time: number) => {
       const delta = time - lastTime;
@@ -34,8 +33,6 @@ export default function TechMarquee() {
 
       if (!paused) {
         track.scrollLeft += delta * speed;
-
-        // seamless loop
         if (track.scrollLeft >= track.scrollWidth / 2) {
           track.scrollLeft = 0;
         }
@@ -49,15 +46,11 @@ export default function TechMarquee() {
   }, [paused]);
 
   return (
-    <section
-      id="content"
-      className="relative w-full bg-black overflow-hidden"
-    >
-      {/* Optional edge fade (visual only, no spacing) */}
+    <section className="relative w-full bg-black overflow-hidden">
+      {/* Edge fades */}
       <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-black to-transparent z-10" />
       <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-black to-transparent z-10" />
 
-      {/* Logo wheel */}
       <div
         ref={trackRef}
         onMouseEnter={() => setPaused(true)}
@@ -65,35 +58,14 @@ export default function TechMarquee() {
         onTouchStart={() => setPaused(true)}
         onTouchEnd={() => setPaused(false)}
         onWheel={() => setPaused(true)}
-        className="
-          flex gap-6
-          overflow-x-hidden
-          select-none
-        "
+        className="flex gap-6 overflow-x-hidden select-none"
       >
         {[...techStack, ...techStack].map((tech, index) => (
           <div key={index} className="tech-chip shrink-0">
-            <img
-              src={tech.src}
-              alt={tech.name}
-              className="h-10 w-auto"
-            />
-            <span className="mt-2 text-xs text-gray-400">
-              {tech.name}
-            </span>
+            <img src={tech.src} alt={tech.name} className="h-10 w-auto" />
+            <span className="mt-2 text-xs text-gray-400">{tech.name}</span>
           </div>
         ))}
-      </div>
-
-      {/* About Me (below wheel) */}
-      <div className="relative z-10 mt-24 px-6 text-center">
-        <h2 className="text-4xl font-bold text-white mb-4">
-          About Me
-        </h2>
-        <p className="text-gray-400 max-w-2xl mx-auto">
-          Technologies I work with across cybersecurity, engineering,
-          and analytics.
-        </p>
       </div>
     </section>
   );
