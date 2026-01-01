@@ -39,52 +39,57 @@ body {
 
 
 /********************Scroll down dot button***********************/
-@keyframes scrollDot {
+.scroll-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+  animation: scrollPulse 1.6s infinite;
+}
+
+@keyframes scrollPulse {
   0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  70% {
-    transform: translateY(16px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 0;
-  }
-}
-
-.animate-scrollDot {
-  animation: scrollDot 1.6s infinite;
-}
-
-
-
-
-
-.arrow-down {
-  width: 10px;
-  height: 10px;
-  border-right: 2px solid rgba(255, 255, 255, 0.9);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.9);
-  transform: rotate(45deg);
-  animation: arrowBounce 1.6s infinite;
-}
-
-@keyframes arrowBounce {
-  0% {
-    transform: rotate(45deg) translate(0, 0);
+    transform: translateY(-6px);
     opacity: 0;
   }
   30% {
     opacity: 1;
   }
   60% {
-    transform: rotate(45deg) translate(6px, 6px);
+    transform: translateY(8px);
     opacity: 0;
   }
   100% {
     opacity: 0;
   }
 }
+
+
+
+
+.animate-glowPulse {
+  background: radial-gradient(
+    circle,
+    rgba(34, 211, 238, 0.35),
+    rgba(34, 211, 238, 0.15),
+    transparent 100%
+  );
+  animation: glowPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.85);
+    opacity: 0.4;
+  }
+}
+
 

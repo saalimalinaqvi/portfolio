@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function ScrollDown() {
   const [hidden, setHidden] = useState(false);
+  const clickedRef = useRef(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -17,9 +18,18 @@ export default function ScrollDown() {
   }, []);
 
   const scrollToContent = () => {
-    document
-      .getElementById("content")
-      ?.scrollIntoView({ behavior: "smooth" });
+    if (clickedRef.current) return;
+    clickedRef.current = true;
+
+    const target = document.getElementById("content");
+    if (!target) return;
+
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Hide after scroll begins (prevents race condition)
+    setTimeout(() => {
+      setHidden(true);
+    }, 150);
   };
 
   return (
@@ -29,15 +39,44 @@ export default function ScrollDown() {
       className={`
         fixed left-1/2 z-30 -translate-x-1/2
         transition-all duration-500
-        ${hidden ? "opacity-0 pointer-events-none" : "opacity-100"}
-        bottom-[calc(env(safe-area-inset-bottom)+24px)]
-        md:bottom-10
+        ${hidden ? "opacity-0 pointer-events-none scale-95" : "opacity-100 scale-100"}
+        bottom-[calc(env(safe-area-inset-bottom)+28px)]
+        md:bottom-12
+        group
       `}
     >
-      {/* Animated Arrow */}
-      <div className="flex flex-col items-center gap-2">
-        <span className="arrow-down" />
-      </div>
+      {/* Scroll Pill */}
+<div
+  className="
+    relative flex items-center justify-center
+    h-14 w-9
+    rounded-full
+    bg-white/5
+    backdrop-blur-xl
+    border border-white/15
+    transition-all duration-300
+    group-hover:scale-105
+    active:scale-95
+    group-hover:shadow-[0_0_30px_rgba(34,211,238,0.35)]
+  "
+>
+  {/* Glow ring (hover only) */}
+  <span
+    className="
+      pointer-events-none
+      absolute inset-0
+      rounded-full
+      opacity-0
+      group-hover:opacity-100
+      transition-opacity duration-300
+      animate-glowPulse
+    "
+  />
+
+  {/* Inner animated dot */}
+  <span className="scroll-dot relative z-10" />
+</div>
+
     </button>
   );
 }
