@@ -1,38 +1,42 @@
 "use client";
 
+import { useFrame, invalidate } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import * as THREE from "three";
 
+/* 🔹 Preload model (GOOD practice) */
+useGLTF.preload("/models/spacestation.glb");
+
 export default function SpaceStation() {
-  const ref = useRef<THREE.Group>(null!);
+  const groupRef = useRef<THREE.Group>(null);
+
+  // Load GLB
   const { scene } = useGLTF("/models/spacestation.glb");
 
-  useEffect(() => {
-    scene.traverse((child: any) => {
-      if (child.isMesh && child.material) {
-        child.material.emissiveIntensity = 1.2;
-      }
-    });
-  }, [scene]);
+  useFrame((state, delta) => {
+    if (!groupRef.current) return;
 
-  // Very slow orbital drift (space feel)
-  useFrame((state) => {
-    if (!ref.current) return;
-    ref.current.position.y =
-      Math.sin(state.clock.elapsedTime * 0.1) * 0.6;
-    ref.current.rotation.y += 0.0006;
+    // 🔄 Rotate on its axis
+    groupRef.current.rotation.y += delta * 0.15;
+
+    // 🌀 Optional slow orbit (comment out if not needed)
+    const t = state.clock.elapsedTime;
+    groupRef.current.position.x = Math.cos(t * 0.15) * 1.5;
+    groupRef.current.position.z = Math.sin(t * 0.15) * 1.5;
+
+    // 🔥 REQUIRED for frameloop="demand"
+    invalidate();
   });
 
   return (
-    <primitive
-      ref={ref}
-      object={scene}
-      scale={6}
+    <group
+      ref={groupRef}
+      scale={1}
       position={[0, 0, 0]}
-    />
+      rotation={[0, 0, 0]}
+    >
+      <primitive object={scene} />
+    </group>
   );
 }
-
-useGLTF.preload("/models/spacestation.glb");

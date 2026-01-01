@@ -1,25 +1,44 @@
 "use client";
 
-import { Points, PointMaterial } from "@react-three/drei";
-import { useMemo } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useMemo, useRef } from "react";
+import * as THREE from "three";
 
 export default function Particles() {
+  const pointsRef = useRef<THREE.Points>(null);
+
+  // Create particle positions once
   const positions = useMemo(() => {
-    const arr = new Float32Array(3000 * 3);
-    for (let i = 0; i < arr.length; i++) {
-      arr[i] = (Math.random() - 0.5) * 500;
+    const count = 400;
+    const array = new Float32Array(count * 3);
+
+    for (let i = 0; i < count * 3; i++) {
+      array[i] = (Math.random() - 0.5) * 30;
     }
-    return arr;
+
+    return array;
   }, []);
 
+  useFrame((_, delta) => {
+    if (pointsRef.current) {
+      pointsRef.current.rotation.y += delta * 0.04;
+    }
+  });
+
   return (
-    <Points positions={positions} stride={3}>
-      <PointMaterial
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        {/* ✅ CORRECT, TS-SAFE WAY */}
+        <bufferAttribute args={[positions, 3]} />
+      </bufferGeometry>
+
+      <pointsMaterial
+        color="#22d3ee"
+        size={0.05}
         transparent
-        color="#00ffff"
-        size={0.12}
+        opacity={0.5}
         depthWrite={false}
       />
-    </Points>
+    </points>
   );
 }

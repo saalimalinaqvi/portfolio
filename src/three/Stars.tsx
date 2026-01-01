@@ -1,25 +1,17 @@
 "use client";
 
-import { Points, PointMaterial } from "@react-three/drei";
-import { useMemo } from "react";
+import { Stars as DreiStars } from "@react-three/drei";
 
 export default function Stars() {
-  const positions = useMemo(() => {
-    const arr = new Float32Array(6000 * 3);
-    for (let i = 0; i < arr.length; i++) {
-      arr[i] = (Math.random() - 0.5) * 2000;
-    }
-    return arr;
-  }, []);
-
   return (
-    <Points positions={positions} stride={3}>
-      <PointMaterial
-        color="#ffffff"
-        size={0.6}
-        sizeAttenuation
-        depthWrite={false}
-      />
-    </Points>
+    <DreiStars
+      radius={70}        // outer radius
+      depth={40}         // star field depth
+      count={2000}       // ⭐ reduced for GPU
+      factor={3}
+      saturation={0}
+      fade
+      speed={0.5}
+    />
   );
 }
