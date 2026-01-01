@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 
 html,
@@ -52,5 +56,35 @@ body {
 
 .animate-scrollDot {
   animation: scrollDot 1.6s infinite;
+}
+
+
+
+
+
+.arrow-down {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(255, 255, 255, 0.9);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+  transform: rotate(45deg);
+  animation: arrowBounce 1.6s infinite;
+}
+
+@keyframes arrowBounce {
+  0% {
+    transform: rotate(45deg) translate(0, 0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  60% {
+    transform: rotate(45deg) translate(6px, 6px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 

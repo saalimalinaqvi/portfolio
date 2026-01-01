@@ -1,6 +1,21 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function ScrollDown() {
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 20) {
+        setHidden(true);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const scrollToContent = () => {
     document
       .getElementById("content")
@@ -11,20 +26,17 @@ export default function ScrollDown() {
     <button
       onClick={scrollToContent}
       aria-label="Scroll down"
-      className="
+      className={`
         fixed left-1/2 z-30 -translate-x-1/2
-        flex flex-col items-center gap-2
-        text-white/80 hover:text-white transition
+        transition-all duration-500
+        ${hidden ? "opacity-0 pointer-events-none" : "opacity-100"}
         bottom-[calc(env(safe-area-inset-bottom)+24px)]
         md:bottom-10
-      "
+      `}
     >
-      <span className="text-xs tracking-widest uppercase">
-        Scroll
-      </span>
-
-      <div className="h-10 w-6 rounded-full border border-white/40 flex items-start justify-center p-1">
-        <span className="block h-2 w-2 rounded-full bg-white animate-scrollDot" />
+      {/* Animated Arrow */}
+      <div className="flex flex-col items-center gap-2">
+        <span className="arrow-down" />
       </div>
     </button>
   );

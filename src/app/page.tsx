@@ -5,16 +5,18 @@ export default function Home() {
     <>
       <Hero />
 
-      {/* Scroll target */}
+      {/* 👇 THIS IS REQUIRED */}
       <section
         id="content"
-        className="min-h-screen bg-black text-white px-20 py-32"
+        className="min-h-screen w-full bg-black px-8 md:px-20 py-32 text-white"
       >
         <h2 className="text-4xl font-bold mb-6">
-          About the Platform
+          About Me
         </h2>
+
         <p className="max-w-3xl text-gray-300">
-          This section proves scrolling works. Replace with real content later.
+          This section confirms that scrolling works.
+          Replace this with real content later.
         </p>
       </section>
     </>
