@@ -13,6 +13,14 @@ const techStack = [
   { name: "Google Analytics", src: "/tech/google-analytics.svg" },
   { name: "Servers", src: "/tech/server.svg" },
   { name: "Cybersecurity Tools", src: "/tech/security.svg" },
+  { name: "DDOS", src: "/tech/ddos.svg" },
+  { name: "Spreadsheet", src: "/tech/excel.svg" },
+  { name: "MongoDB", src: "/tech/mongodb.svg" },
+  { name: "Security", src: "/tech/security.svg" },
+  { name: "Server", src: "/tech/server.svg" },
+  { name: "Splunk", src: "/tech/splunk.svg" },
+  { name: "Tableau", src: "/tech/tableau.svg" },
+  { name: "Wire Shark", src: "/tech/wireshark.svg" },
 ];
 
 export default function TechMarquee() {

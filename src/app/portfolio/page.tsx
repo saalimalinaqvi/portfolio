@@ -30,8 +30,17 @@ export default function PortfolioPage() {
         description="Production-grade web platforms with live deployments."
         basePath="/portfolio/full-stack"
         items={[
-          { title: "SaaS Website Builder", slug: "saas-builder", image: "/portfolio/fullstack/saas/hero.png" },
-          { title: "Cybersecurity Company Website", slug: "cyber-firm", image: "/portfolio/fullstack/cyber/hero.png" },
+          { title: "Simray Digital 3D", slug: "simraydigi", image: "/fullstack/simray.png" },
+          { title: "Next Soft Media", slug: "nextsoftmedia", image: "/fullstack/nsmwebdesign.png" },
+          { title: "The MSG Foundation", slug: "themsg", image: "/fullstack/msgwebdesign.png" },
+
+          { title: "Lushh Salon", slug: "lushh", image: "/fullstack/lushhwebdesign.png" },
+          { title: "R Creative Interior", slug: "rcreative", image: "/fullstack/rcreativewebdesign.png" },
+          { title: "Data Digger", slug: "datadigger", image: "/fullstack/datadiggerwebdesign.png" },
+
+          { title: "Caspian Restaurant Spin Wheel", slug: "caspianspin", image: "/fullstack/caspianspinwin.png" },
+          { title: "Fossil Diamond", slug: "fossildiamond", image: "/fullstack/fossilwebdesign.png" },
+          { title: "Zoti Comapany", slug: "zoti", image: "/fullstack/zotiwebdesign.png" },
         ]}
       />
     </main>

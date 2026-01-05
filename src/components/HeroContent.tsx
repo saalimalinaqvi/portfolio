@@ -6,9 +6,9 @@ import Link from "next/link";
 export default function HeroContent() {
   const [text] = useTypewriter({
     words: [
-      "Cybersecurity Engineer",
       "Full-Stack Engineer",
-      "Data Analytics Specialist",
+      "Cybersecurity SOAR",
+      "Data Analytics",
     ],
     loop: true,
     delaySpeed: 1800,
@@ -26,7 +26,7 @@ export default function HeroContent() {
       {/* I am a */}
       <h1 className="text-5xl md:text-6xl font-bold leading-tight">
         I am a{" "}
-        <span className="text-cyan-400">
+        <span className="text-blue-400">
           {text}
           <Cursor cursorStyle="|" />
         </span>
@@ -43,7 +43,7 @@ export default function HeroContent() {
           href="/portfolio"
           className="
             rounded-full px-6 py-3
-            bg-cyan-500 text-black font-semibold
+            bg-blue-400 text-black font-semibold
             transition-all duration-300
             hover:bg-cyan-400
             hover:shadow-[0_0_30px_rgba(34,211,238,0.8)]

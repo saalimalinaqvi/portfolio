@@ -4,8 +4,8 @@ import Image from "next/image";
 type Props = { params: Promise<{ slug: string }> };
 
 const PROJECTS = {
-  "saas-builder": {
-    title: "SaaS Website Builder",
+  "simraydigi": {
+    title: "Simray Digital Company",
     description: "Generate and deploy SaaS websites instantly.",
     longDescription: "Templates, auth, deployment automation, SEO.",
     stack: ["Next.js", "TypeScript", "APIs", "Cloud"],
@@ -14,15 +14,102 @@ const PROJECTS = {
       "/portfolio/fullstack/saas/hero.png",
       "/portfolio/fullstack/saas/dashboard.png",
     ],
-    liveUrl: "https://byindian.in",
+    liveUrl: "https://www.simraydigital.com",
   },
-  "cyber-firm": {
-    title: "Cybersecurity Company Website",
+  "nextsoftmedia": {
+    title: "Next Soft Media Company",
     description: "Secure marketing site for a cyber firm.",
     longDescription: "High-performance, SEO-optimized.",
     stack: ["Next.js", "Tailwind", "SEO"],
     features: ["Fast", "Secure", "SEO"],
-    images: ["/portfolio/fullstack/cyber/hero.png"],
+    images: [
+      "/portfolio/fullstack/cyber/hero.png",
+      "/portfolio/fullstack/cyber/hero.png",
+    ],
+    liveUrl: "https://darkguard.example.com",
+  },
+  "themsg": {
+    title: "The MSG Foundation (NGO)",
+    description: "Secure marketing site for a cyber firm.",
+    longDescription: "High-performance, SEO-optimized.",
+    stack: ["Next.js", "Tailwind", "SEO"],
+    features: ["Fast", "Secure", "SEO"],
+    images: [
+      "/portfolio/fullstack/cyber/hero.png",
+      "/portfolio/fullstack/cyber/hero.png",
+    ],
+    liveUrl: "https://darkguard.example.com",
+  },
+  "lushh": {
+    title: "Lushh Salon",
+    description: "Secure marketing site for a cyber firm.",
+    longDescription: "High-performance, SEO-optimized.",
+    stack: ["Next.js", "Tailwind", "SEO"],
+    features: ["Fast", "Secure", "SEO"],
+    images: [
+      "/portfolio/fullstack/cyber/hero.png",
+      "/portfolio/fullstack/cyber/hero.png",
+    ],
+    liveUrl: "https://darkguard.example.com",
+  },
+  "rcreative": {
+    title: "R Creative Interior",
+    description: "Secure marketing site for a cyber firm.",
+    longDescription: "High-performance, SEO-optimized.",
+    stack: ["Next.js", "Tailwind", "SEO"],
+    features: ["Fast", "Secure", "SEO"],
+    images: [
+      "/portfolio/fullstack/cyber/hero.png",
+      "/portfolio/fullstack/cyber/hero.png",
+    ],
+    liveUrl: "https://darkguard.example.com",
+  },
+  "datadigger": {
+    title: "R Creative Interior",
+    description: "Secure marketing site for a cyber firm.",
+    longDescription: "High-performance, SEO-optimized.",
+    stack: ["Next.js", "Tailwind", "SEO"],
+    features: ["Fast", "Secure", "SEO"],
+    images: [
+      "/portfolio/fullstack/cyber/hero.png",
+      "/portfolio/fullstack/cyber/hero.png",
+    ],
+    liveUrl: "https://darkguard.example.com",
+  },
+  "caspianspin": {
+    title: "R Creative Interior",
+    description: "Secure marketing site for a cyber firm.",
+    longDescription: "High-performance, SEO-optimized.",
+    stack: ["Next.js", "Tailwind", "SEO"],
+    features: ["Fast", "Secure", "SEO"],
+    images: [
+      "/portfolio/fullstack/cyber/hero.png",
+      "/portfolio/fullstack/cyber/hero.png",
+    ],
+    liveUrl: "https://darkguard.example.com",
+  },
+  "fossildiamond": {
+    title: "R Creative Interior",
+    description: "Secure marketing site for a cyber firm.",
+    longDescription: "High-performance, SEO-optimized.",
+    stack: ["Next.js", "Tailwind", "SEO"],
+    features: ["Fast", "Secure", "SEO"],
+    images: [
+      "/portfolio/fullstack/cyber/hero.png",
+      "/portfolio/fullstack/cyber/hero.png",
+    ],
+    liveUrl: "https://darkguard.example.com",
+  },
+  "zoti": {
+    title: "R Creative Interior",
+    description: "Secure marketing site for a cyber firm.",
+    longDescription: "High-performance, SEO-optimized.",
+    stack: ["Next.js", "Tailwind", "SEO"],
+    features: ["Fast", "Secure", "SEO"],
+    images: [
+      "/portfolio/fullstack/cyber/hero.png",
+      "/portfolio/fullstack/cyber/hero.png",
+    ],
     liveUrl: "https://darkguard.example.com",
   },
 };

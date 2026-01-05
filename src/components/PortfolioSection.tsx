@@ -62,9 +62,9 @@ export default function PortfolioSection({
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover transition-transform duration-500 group-hover:scale-100"
                   />
-                  <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition" />
+                  <div className="absolute inset-0 bg-black/5 group-hover:bg-black/21 transition" />
                 </div>
 
                 {/* Content */}
