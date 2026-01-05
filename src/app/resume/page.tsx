@@ -12,18 +12,26 @@ export default function ResumePage() {
 
       {/* PDF Viewer */}
       <div className="w-full max-w-5xl mx-auto mb-10">
-        <div className="relative w-full h-[75vh] rounded-xl overflow-hidden border border-white/10 bg-black">
-          <iframe
-            src="/resume.pdf"
+        <div className="relative w-full h-[80vh] rounded-xl overflow-hidden border border-white/10 bg-black">
+
+          <object
+            data="/resume.pdf"
+            type="application/pdf"
             className="w-full h-full"
-            title="Resume PDF"
-          />
+          >
+            {/* Fallback iframe */}
+            <iframe
+              src="/resume.pdf"
+              className="w-full h-full"
+              title="Resume PDF"
+            />
+          </object>
+
         </div>
 
-        {/* Mobile fallback note */}
-        <p className="mt-4 text-center text-sm text-gray-400 md:hidden">
-          If the resume does not display correctly on your device,
-          please use the download button below.
+        {/* Mobile helper text */}
+        <p className="mt-4 text-center text-sm text-gray-400">
+          If the resume does not display correctly, use the download button below.
         </p>
       </div>
 
