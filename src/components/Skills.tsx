@@ -64,7 +64,7 @@ export default function Skills() {
     <section className="relative w-full bg-black py-12 px-6">
       {/* Ambient glow */}
       <div className="pointer-events-none absolute inset-0 flex justify-center">
-        <div className="h-80 w-80 rounded-full bg-cyan-500/10 blur-[160px]" />
+        <div className="h-80 w-80 rounded-full bg-blue-500/10 blur-[160px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl">
@@ -104,7 +104,7 @@ export default function Skills() {
                   p-6
                   backdrop-blur-md
                   transition-shadow
-                  hover:border-cyan-400/40
+                  hover:border-blue-400/40
                   hover:shadow-[0_0_40px_rgba(34,211,238,0.18)]
                   will-change-transform
                 "
@@ -112,8 +112,8 @@ export default function Skills() {
               >
                 {/* Card header */}
                 <div className="mb-5 flex items-center gap-3">
-                  <div className="rounded-lg bg-cyan-500/10 p-2">
-                    <GroupIcon className="h-5 w-5 text-cyan-400" />
+                  <div className="rounded-lg bg-blue-500/10 p-2">
+                    <GroupIcon className="h-5 w-5 text-blue-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-white">
                     {group.title}
@@ -127,7 +127,7 @@ export default function Skills() {
                       key={label}
                       className="flex items-center gap-3 text-sm text-gray-300"
                     >
-                      <ItemIcon className="h-4 w-4 text-cyan-400" />
+                      <ItemIcon className="h-4 w-4 text-blue-400" />
                       {label}
                     </li>
                   ))}

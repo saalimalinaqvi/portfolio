@@ -42,7 +42,7 @@ export default function WorkExperience() {
     <section className="relative w-full bg-black py-32 px-6">
       {/* Ambient glow */}
       <div className="pointer-events-none absolute inset-0 flex justify-center">
-        <div className="h-96 w-96 rounded-full bg-cyan-500/10 blur-[180px]" />
+        <div className="h-96 w-96 rounded-full bg-blue-500/10 blur-[180px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl">
@@ -73,7 +73,7 @@ export default function WorkExperience() {
                 p-8
                 backdrop-blur-md
                 transition-all
-                hover:border-cyan-400/40
+                hover:border-blue-400/40
                 hover:shadow-[0_0_40px_rgba(34,211,238,0.18)]
               "
             >
@@ -96,7 +96,7 @@ export default function WorkExperience() {
               <ul className="mt-4 space-y-2 text-gray-300">
                 {exp.points.map((point, i) => (
                   <li key={i} className="flex gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-400" />
                     <span className="leading-relaxed">{point}</span>
                   </li>
                 ))}

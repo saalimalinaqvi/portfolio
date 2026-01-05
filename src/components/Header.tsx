@@ -142,7 +142,7 @@ export default function Header() {
                       h-0.5 w-6
                       -translate-x-1/2
                       rounded-full
-                      bg-cyan-400
+                      bg-blue-400
                       shadow-[0_0_12px_rgba(34,211,238,0.9)]
                     "
                   />

@@ -43,7 +43,7 @@ export default function ResumePage() {
           className="
             inline-flex items-center gap-2
             rounded-full px-8 py-4
-            bg-cyan-500 text-black font-semibold
+            bg-blue-500 text-black font-semibold
             hover:bg-cyan-400 transition
           "
         >

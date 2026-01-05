@@ -105,7 +105,7 @@ export default function AdsPage() {
               rel="noopener noreferrer"
               className="
                 inline-flex items-center gap-2
-                text-cyan-400 text-sm font-medium
+                text-blue-400 text-sm font-medium
                 hover:text-cyan-300 transition
               "
             >
@@ -129,7 +129,7 @@ export default function AdsPage() {
 
         <a
           href="mailto:ads@example.com"
-          className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300"
+          className="inline-flex items-center gap-2 text-blue-400 hover:text-cyan-300"
         >
           <Mail className="h-4 w-4" />
           saalimalinaqvi@outlook.com
