@@ -1,26 +1,39 @@
+import PortfolioSection from "@/components/PortfolioSection";
+
 export default function PortfolioPage() {
   return (
-    <main className="min-h-screen w-full bg-black px-8 md:px-20 pt-32 pb-20 text-white">
-      <h1 className="text-5xl font-bold mb-6">
-        Portfolio
-      </h1>
+    <main className="bg-black text-white">
+      <PortfolioSection
+        title="Cybersecurity"
+        description="Security platforms, audits, and defensive systems."
+        basePath="/portfolio/cybersecurity"
+        items={[
+          { title: "SOC Monitoring Dashboard", slug: "soc-dashboard", image: "/portfolio/cyber/soc.jpg" },
+          { title: "Vulnerability Assessment Platform", slug: "vapt-platform", image: "/portfolio/cyber/vapt.jpg" },
+          { title: "Incident Response System", slug: "incident-response-system", image: "/portfolio/cyber/vapt.jpg" },
+        ]}
+      />
 
-      <p className="text-gray-300 max-w-2xl mb-12">
-        Selected projects across cybersecurity, full-stack engineering,
-        and data analytics.
-      </p>
+      <PortfolioSection
+        title="Data Analytics"
+        description="Dashboards, analytics pipelines, and predictive systems."
+        basePath="/portfolio/data-analytics"
+        items={[
+          { title: "Student Risk Prediction", slug: "student-risk", image: "/portfolio/data/student.jpg" },
+          { title: "Business Intelligence Dashboard", slug: "bi-dashboard", image: "/portfolio/data/bi.jpg" },
+          { title: "Sales Performance Analytics", slug: "sales-performance-analytics", image: "/portfolio/fullstack/cyber/hero.png" },
+        ]}
+      />
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div className="rounded-xl bg-white/5 border border-white/10 p-6">
-          Project Card (Coming Soon)
-        </div>
-        <div className="rounded-xl bg-white/5 border border-white/10 p-6">
-          Project Card (Coming Soon)
-        </div>
-        <div className="rounded-xl bg-white/5 border border-white/10 p-6">
-          Project Card (Coming Soon)
-        </div>
-      </div>
+      <PortfolioSection
+        title="Full Stack Website Development"
+        description="Production-grade web platforms with live deployments."
+        basePath="/portfolio/full-stack"
+        items={[
+          { title: "SaaS Website Builder", slug: "saas-builder", image: "/portfolio/fullstack/saas/hero.png" },
+          { title: "Cybersecurity Company Website", slug: "cyber-firm", image: "/portfolio/fullstack/cyber/hero.png" },
+        ]}
+      />
     </main>
   );
 }
