@@ -174,8 +174,8 @@ export default async function Page({ params }: Props) {
 
         {p.liveUrl && (
           <a href={p.liveUrl} target="_blank" rel="noopener noreferrer"
-             className="inline-flex rounded-lg bg-cyan-500 px-6 py-3 text-black font-semibold">
-            🌐 View Live Website
+             className="inline-flex rounded-lg bg-blue-500 px-6 py-3 text-black font-semibold">
+            🌐 Go Live
           </a>
         )}
       </div>
