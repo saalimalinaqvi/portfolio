@@ -69,9 +69,9 @@ export default function Footer() {
 
           {/* Right socials */}
           <div className="flex gap-4">
-            <Social href="https://github.com/" icon={Github} />
-            <Social href="https://linkedin.com/" icon={Linkedin} />
-            <Social href="mailto:contact@example.com" icon={Mail} />
+            <Social href="https://github.com/saalimalinaqvi/" icon={Github} />
+            <Social href="https://linkedin.com/in/saalimalinaqvi" icon={Linkedin} />
+            <Social href="mailto:saalimalinaqvi@outlook.com" icon={Mail} />
           </div>
         </div>
       </div>

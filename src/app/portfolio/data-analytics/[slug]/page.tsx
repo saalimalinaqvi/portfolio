@@ -19,8 +19,8 @@ const PROJECTS: Record<string, Project> = {
       "Predictive analytics system to identify at-risk students using historical data.",
     tools: ["Power BI", "PostgreSQL", "Predictive Modeling"],
     images: [
-      "/portfolio/data/student-risk/overview.png",
-      "/portfolio/data/student-risk/dashboard.png",
+      "/updatesoon.jpg",
+      "/updatesoon.jpg",
     ],
   },
 
@@ -30,8 +30,8 @@ const PROJECTS: Record<string, Project> = {
       "Interactive dashboard providing real-time business insights.",
     tools: ["Power BI", "SQL", "Data Visualization"],
     images: [
-      "/portfolio/data/bi/overview.png",
-      "/portfolio/data/bi/kpi.png",
+      "/updatesoon.jpg",
+      "/updatesoon.jpg",
     ],
   },
 
@@ -41,8 +41,8 @@ const PROJECTS: Record<string, Project> = {
       "Analytics platform to track and visualize sales performance.",
     tools: ["Power BI", "PostgreSQL", "ETL Pipelines"],
     images: [
-      "/portfolio/data/sales/overview.png",
-      "/portfolio/data/sales/trends.png",
+      "/updatesoon.jpg",
+      "/updatesoon.jpg",
     ],
   },
 };

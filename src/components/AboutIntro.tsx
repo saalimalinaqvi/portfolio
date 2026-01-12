@@ -42,7 +42,7 @@ export default function AboutIntro() {
         {/* Social links */}
         <div className="flex justify-center gap-6">
           <a
-            href="https://github.com/YOUR_GITHUB_USERNAME"
+            href="https://github.com/saalimalinaqvi/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub profile"
@@ -62,7 +62,7 @@ export default function AboutIntro() {
           </a>
 
           <a
-            href="https://www.linkedin.com/in/YOUR_LINKEDIN_USERNAME"
+            href="https://www.linkedin.com/in/saalimalinaqvi/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn profile"

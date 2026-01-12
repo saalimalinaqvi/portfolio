@@ -8,9 +8,9 @@ export default function PortfolioPage() {
         description="Security platforms, audits, and defensive systems."
         basePath="/portfolio/cybersecurity"
         items={[
-          { title: "SOC Monitoring Dashboard", slug: "soc-dashboard", image: "/portfolio/cyber/soc.jpg" },
-          { title: "Vulnerability Assessment Platform", slug: "vapt-platform", image: "/portfolio/cyber/vapt.jpg" },
-          { title: "Incident Response System", slug: "incident-response-system", image: "/portfolio/cyber/vapt.jpg" },
+          { title: "SOC Monitoring Dashboard", slug: "soc-dashboard", image: "/cybersec/cyberimg1.webp" },
+          { title: "Vulnerability Assessment Platform", slug: "vapt-platform", image: "/cybersec/cyberimg2.jpg" },
+          { title: "Incident Response System", slug: "incident-response-system", image: "/cybersec/cyberimg3.png" },
         ]}
       />
 
@@ -19,9 +19,9 @@ export default function PortfolioPage() {
         description="Dashboards, analytics pipelines, and predictive systems."
         basePath="/portfolio/data-analytics"
         items={[
-          { title: "Student Risk Prediction", slug: "student-risk", image: "/portfolio/data/student.jpg" },
-          { title: "Business Intelligence Dashboard", slug: "bi-dashboard", image: "/portfolio/data/bi.jpg" },
-          { title: "Sales Performance Analytics", slug: "sales-performance-analytics", image: "/portfolio/fullstack/cyber/hero.png" },
+          { title: "Student Risk Prediction", slug: "student-risk", image: "/data-analytics/dataanaly1.png" },
+          { title: "Business Intelligence Dashboard", slug: "bi-dashboard", image: "/data-analytics/dataanaly2.png" },
+          { title: "Sales Performance Analytics", slug: "sales-performance-analytics", image: "/data-analytics/dataanaly3.png" },
         ]}
       />
 

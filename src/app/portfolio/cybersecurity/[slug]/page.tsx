@@ -9,21 +9,30 @@ const PROJECTS = {
     description: "Real-time SOC dashboard for alerts and incidents.",
     longDescription: "Centralized monitoring with alert correlation and RBAC.",
     features: ["Live log ingestion", "Severity classification", "RBAC"],
-    images: ["/portfolio/cyber/soc.jpg", "/portfolio/cyber/vapt.jpg"],
+    images: [
+      "/updatesoon.jpg",
+      "/updatesoon.jpg",
+    ],
   },
   "vapt-platform": {
     title: "Vulnerability Assessment Platform",
     description: "Automated vulnerability scanning and reporting.",
     longDescription: "Enterprise-ready scanning with risk scoring.",
     features: ["OWASP coverage", "Automated scans", "Risk reports"],
-    images: ["/portfolio/cyber/vapt.jpg", "/portfolio/cyber/vapt.jpg"],
+    images: [
+      "/updatesoon.jpg",
+      "/updatesoon.jpg",
+    ],
   },
   "incident-response-system": {
     title: "Incident ResponseSystem",
     description: "Automated vulnerability scanning and reporting.",
     longDescription: "Enterprise-ready scanning with risk scoring.",
     features: ["OWASP coverage", "Automated scans", "Risk reports"],
-    images: ["/portfolio/cyber/vapt.jpg", "/portfolio/cyber/vapt.jpg"],
+    images: [
+      "/updatesoon.jpg",
+      "/updatesoon.jpg",
+    ],
   },
 };
 
