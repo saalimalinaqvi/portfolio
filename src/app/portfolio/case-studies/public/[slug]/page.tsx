@@ -1,10 +1,25 @@
 import { notFound } from "next/navigation";
+import ProjectDetails from "@/components/ProjectDetails";
 
 type Props = { params: Promise<{ slug: string }> };
 
 const CASES = {
-  "threat-model": { title: "Threat Modeling", summary: "Structured threat modeling approach." },
-  "public-review": { title: "Public Security Review", summary: "High-level security review." },
+  "threat-model": {
+    title: "Threat Modeling",
+    description: "Structured threat modeling approach for modern ecosystems.",
+    longDescription: "A comprehensive framework for evaluating and mitigating potential security risks in complex architectural designs. Utilizes STRIDE and DREAD methodologies to identify vulnerabilities before deployment.",
+    stack: ["ThreatDragon", "Python", "Security Auditing", "Infrastructure as Code"],
+    features: ["Risk Vector Analysis", "Mitigation Strategy Planning", "Attack Surface Mapping", "Compliance Checking", "Security Architecture Design"],
+    images: ["/updatesoon.jpg", "/updatesoon.jpg"]
+  },
+  "public-review": {
+    title: "Public Security Review",
+    description: "High-level security review for public infrastructures.",
+    longDescription: "A deep-dive analysis into the security posture of publicly exposed digital assets. Focuses on network hardening, data exposure prevention, and robust authentication mechanisms.",
+    stack: ["Nmap", "Nessus", "Burp Suite", "Shodan", "Cloud Security"],
+    features: ["Network Penetration Testing", "External Asset Discovery", "Information Leakage Analysis", "API Security Review", "Public Posture Hardening"],
+    images: ["/updatesoon.jpg", "/updatesoon.jpg"]
+  },
 };
 
 export default async function Page({ params }: Props) {
@@ -12,12 +27,5 @@ export default async function Page({ params }: Props) {
   const c = (CASES as any)[slug];
   if (!c) notFound();
 
-  return (
-    <main className="min-h-screen bg-black text-white px-6 py-28">
-      <div className="mx-auto max-w-4xl">
-        <h1 className="text-4xl font-bold mb-4">{c.title}</h1>
-        <p className="text-gray-400">{c.summary}</p>
-      </div>
-    </main>
-  );
+  return <ProjectDetails {...c} />;
 }

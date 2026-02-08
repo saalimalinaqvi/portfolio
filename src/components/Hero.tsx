@@ -1,22 +1,18 @@
-import Scene from "@/three/Scene";
+import ParticleBackground from "@/components/ParticleBackground";
 import HeroContent from "@/components/HeroContent";
-import ScrollDown from "@/components/ScrollDown";
 
 export default function Hero() {
   return (
     <main className="relative min-h-screen w-full overflow-hidden bg-black">
-      {/* 3D Background (interactive) */}
+      {/* Particle Background (interactive) */}
       <div className="absolute inset-0 z-0">
-        <Scene />
+        <ParticleBackground />
       </div>
 
-      {/* Hero Content (does NOT block 3D) */}
-      <div className="relative z-10 flex min-h-screen flex-col justify-center px-8 md:px-20 pt-28 pointer-events-none">
+      {/* Hero Content - Centered */}
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-4 sm:px-8 md:px-12 py-20 pointer-events-none">
         <HeroContent />
       </div>
-
-      {/* Scroll indicator (clickable) */}
-      <ScrollDown />
     </main>
   );
 }

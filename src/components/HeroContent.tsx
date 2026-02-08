@@ -2,13 +2,14 @@
 
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import Link from "next/link";
+import { Download, Briefcase } from "lucide-react";
 
 export default function HeroContent() {
   const [text] = useTypewriter({
     words: [
       "Full-Stack Engineer",
       "Cybersecurity SOAR",
-      "Data Analytics",
+      "Data Analytics Expert",
     ],
     loop: true,
     delaySpeed: 1800,
@@ -17,55 +18,98 @@ export default function HeroContent() {
   });
 
   return (
-    <div className="max-w-3xl text-white">
-      {/* Who am I */}
-      <p className="text-lg text-gray-400 mb-2">
-        Who am I?
-      </p>
+    <div className="w-full max-w-4xl mx-auto text-center px-4">
+      {/* Greeting with fade-in animation */}
+      <div className="mb-4 animate-fadeIn">
+        <p className="text-sm md:text-base text-gray-400 mb-1 tracking-wide uppercase font-medium">
+          Welcome! I am
+        </p>
+        <h2 className="text-2xl md:text-3xl font-bold text-white mb-1">
+          Saalim Ali Naqvi
+        </h2>
+      </div>
 
-      {/* I am a */}
-      <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-        I am a{" "}
-        <span className="text-blue-400">
-          {text}
-          <Cursor cursorStyle="|" />
-        </span>
-      </h1>
+      {/* Main heading with typewriter */}
+      <div className="mb-6 animate-fadeIn" style={{ animationDelay: "0.2s" }}>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3">
+          <span className="text-white">I am a </span>
+          <br className="sm:hidden" />
+          <span className="relative inline-block">
+            <span className="text-sky-400">
+              {text}
+              <Cursor cursorStyle="|" />
+            </span>
+          </span>
+        </h1>
+      </div>
 
-      {/* Subtitle */}
-      <p className="mt-6 text-lg text-gray-300">
-        Let’s find out who I really am.
-      </p>
+      {/* Subtitle with classic tech accents */}
+      <div className="mb-8 animate-fadeIn" style={{ animationDelay: "0.4s" }}>
+        <p className="text-base md:text-lg text-gray-400 max-w-xl mx-auto leading-relaxed">
+          Passionate about building <span className="text-white font-semibold">secure</span>,{" "}
+          <span className="text-white font-semibold">scalable</span>, and{" "}
+          <span className="text-white font-semibold">innovative</span> solutions in the digital space.
+        </p>
+        <p className="text-sm md:text-base text-gray-500 mt-2">
+          Let's create something <span className="text-sky-400 font-medium border-b border-sky-400/30">extraordinary</span> together.
+        </p>
+      </div>
 
-      {/* Buttons */}
-      <div className="mt-10 flex gap-4 flex-wrap pointer-events-auto">
+      {/* Classic Compact Buttons */}
+      <div
+        className="flex flex-col sm:flex-row gap-3 justify-center items-center pointer-events-auto animate-fadeIn"
+        style={{ animationDelay: "0.6s" }}
+      >
         <Link
           href="/portfolio"
           className="
-            rounded-full px-6 py-3
-            bg-blue-400 text-black font-semibold
+            group relative
+            w-full sm:w-auto
+            rounded-full px-6 py-2
+            bg-sky-500 text-black font-semibold text-sm
             transition-all duration-300
-            hover:bg-cyan-400
-            hover:shadow-[0_0_30px_rgba(34,211,238,0.8)]
+            hover:bg-sky-400 hover:shadow-[0_0_20px_rgba(56,189,248,0.4)]
+            active:scale-95
+            overflow-hidden
           "
         >
-          View Portfolio
+          <span className="relative z-10 flex items-center justify-center gap-2">
+            <Briefcase className="w-4 h-4" />
+            View Portfolio
+          </span>
         </Link>
 
         <Link
-          href="/ads"
+          href="/resume"
           className="
-            rounded-full px-6 py-3
-            border border-white/20
-            text-white
+            group relative
+            w-full sm:w-auto
+            rounded-full px-6 py-2
+            border border-gray-600
+            text-gray-300 font-semibold text-sm
             backdrop-blur-md
             transition-all duration-300
-            hover:bg-white/10
-            hover:border-white/40
+            hover:bg-white/5
+            hover:border-gray-400
+            hover:text-white
+            active:scale-95
           "
         >
-          Ads
+          <span className="flex items-center justify-center gap-2">
+            <Download className="w-4 h-4 group-hover:animate-bounce" />
+            Download Resume
+          </span>
         </Link>
+      </div>
+
+      {/* Minimal scroll hint */}
+      <div
+        className="mt-8 animate-fadeIn hidden md:block"
+        style={{ animationDelay: "0.8s" }}
+      >
+        <p className="text-xs text-gray-600 animate-pulse tracking-widest uppercase">
+          Scroll Down
+        </p>
       </div>
     </div>
   );

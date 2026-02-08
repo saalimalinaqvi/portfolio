@@ -75,7 +75,7 @@ export default function ScrollDown() {
           transition-all duration-300
           group-hover:scale-105
           active:scale-95
-          group-hover:shadow-[0_0_30px_rgba(34,211,238,0.35)]
+          group-hover:shadow-[0_0_30px_rgba(56,189,248,0.35)]
         "
       >
         {/* Glow ring */}

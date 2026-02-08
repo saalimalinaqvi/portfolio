@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import ProjectDetails from "@/components/ProjectDetails";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -7,8 +7,9 @@ const PROJECTS = {
   "soc-dashboard": {
     title: "SOC Monitoring Dashboard",
     description: "Real-time SOC dashboard for alerts and incidents.",
-    longDescription: "Centralized monitoring with alert correlation and RBAC.",
-    features: ["Live log ingestion", "Severity classification", "RBAC"],
+    longDescription: "A high-performance centralized monitoring platform with advanced alert correlation and granular RBAC. Designed for rapid incident detection and streamlined digital forensics workflows.",
+    stack: ["Splunk", "The Hive", "Elasticsearch", "Python", "SOAR"],
+    features: ["Live log ingestion", "Severity classification", "RBAC", "Automated Playbooks", "Trend Analysis"],
     images: [
       "/updatesoon.jpg",
       "/updatesoon.jpg",
@@ -17,18 +18,20 @@ const PROJECTS = {
   "vapt-platform": {
     title: "Vulnerability Assessment Platform",
     description: "Automated vulnerability scanning and reporting.",
-    longDescription: "Enterprise-ready scanning with risk scoring.",
-    features: ["OWASP coverage", "Automated scans", "Risk reports"],
+    longDescription: "Enterprise-grade scanning engine with integrated risk scoring and OWASP compliance auditing. Provides actionable insights for system hardening and defensive prioritization.",
+    stack: ["Kali Linux", "Metasploit", "Nessus", "OWASP ZAP", "Bash"],
+    features: ["OWASP coverage", "Automated scans", "Risk reports", "Remediation Guidance", "Scan Scheduling"],
     images: [
       "/updatesoon.jpg",
       "/updatesoon.jpg",
     ],
   },
   "incident-response-system": {
-    title: "Incident ResponseSystem",
+    title: "Incident Response System",
     description: "Automated vulnerability scanning and reporting.",
-    longDescription: "Enterprise-ready scanning with risk scoring.",
-    features: ["OWASP coverage", "Automated scans", "Risk reports"],
+    longDescription: "A specialized framework for coordinating security response efforts. Integrates real-time communication channels with automated evidence collection and legal preservation protocols.",
+    stack: ["Wireshark", "SANS Tools", "EnCase", "Docker", "Go"],
+    features: ["OWASP coverage", "Automated scans", "Risk reports", "Timeline Recovery", "Evidence Hashing"],
     images: [
       "/updatesoon.jpg",
       "/updatesoon.jpg",
@@ -41,24 +44,5 @@ export default async function Page({ params }: Props) {
   const p = (PROJECTS as any)[slug];
   if (!p) notFound();
 
-  return (
-    <main className="min-h-screen bg-black text-white px-6 py-28">
-      <div className="mx-auto max-w-5xl">
-        <h1 className="text-4xl font-bold mb-4">{p.title}</h1>
-        <p className="text-gray-400 mb-6">{p.description}</p>
-        <p className="text-gray-300 mb-10">{p.longDescription}</p>
-
-        <h3 className="text-xl font-semibold mb-3">Features</h3>
-        <ul className="mb-10 space-y-2 text-gray-300">
-          {p.features.map((f: string) => <li key={f}>• {f}</li>)}
-        </ul>
-
-        <div className="grid sm:grid-cols-2 gap-6">
-          {p.images.map((img: string) => (
-            <Image key={img} src={img} alt={p.title} width={800} height={450} className="rounded-xl border border-white/10" />
-          ))}
-        </div>
-      </div>
-    </main>
-  );
+  return <ProjectDetails {...p} />;
 }

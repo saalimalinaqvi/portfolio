@@ -27,9 +27,9 @@ export default function PortfolioSection({
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-12 text-center">
-          <h2 className="mb-3 text-4xl font-bold">{title}</h2>
+          <h2 className="mb-3 text-4xl font-bold text-sky-400">{title}</h2>
           {subtitle && (
-            <p className="mb-2 text-sm text-cyan-400">{subtitle}</p>
+            <p className="mb-2 text-sm text-sky-400">{subtitle}</p>
           )}
           <p className="mx-auto max-w-3xl text-gray-400 text-lg">
             {description}
@@ -52,8 +52,8 @@ export default function PortfolioSection({
                   border border-white/10 bg-white/5
                   backdrop-blur-md
                   transition-all
-                  hover:border-cyan-400/40
-                  hover:shadow-[0_0_40px_rgba(34,211,238,0.18)]
+                  hover:border-sky-400/40
+                  hover:shadow-[0_0_40px_rgba(56,189,248,0.18)]
                 "
               >
                 {/* Image */}
@@ -77,7 +77,7 @@ export default function PortfolioSection({
 
                 {/* Lock icon */}
                 {item.protected && (
-                  <div className="absolute top-4 right-4 text-cyan-400">
+                  <div className="absolute top-4 right-4 text-sky-400">
                     <Lock size={18} />
                   </div>
                 )}
