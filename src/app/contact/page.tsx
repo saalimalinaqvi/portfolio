@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, Send, MessageSquare, User, AtSign, MapPin } from "lucide-react";
+import { Mail, Linkedin, Github, Send, MessageSquare, User, AtSign, MapPin, CheckCircle2, AlertCircle } from "lucide-react";
 import ParticleBackground from "@/components/ParticleBackground";
+import { useState } from "react";
 
 const contactInfo = [
   {
@@ -32,6 +33,47 @@ const contactInfo = [
 ];
 
 export default function ContactPage() {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      // Using Web3Forms - Very reliable and free for your contact form
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "383f5ff5-ffda-402a-85ce-6f1f8812ff33",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Portfolio Message from ${formData.name}`,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+    }
+  };
+
   return (
     <main className="relative min-h-screen w-full overflow-hidden bg-black pt-32 pb-20">
       {/* Background Effect */}
@@ -108,63 +150,105 @@ export default function ContactPage() {
             {/* Background Glow */}
             <div className="absolute -inset-1 bg-gradient-to-r from-sky-500 to-blue-600 rounded-[2.5rem] blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
 
-            <div className="relative bg-zinc-900/80 border border-white/10 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] shadow-2xl">
-              <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                <MessageSquare className="text-sky-400 w-6 h-6" />
-                Send a Message
-              </h3>
+            <div className="relative bg-zinc-900/80 border border-white/10 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] shadow-2xl overflow-hidden">
 
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-400 ml-1">Full Name</label>
-                    <div className="relative group">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500 group-focus-within:text-sky-400 transition-colors">
-                        <User className="w-5 h-5" />
-                      </div>
-                      <input
-                        type="text"
-                        placeholder="John Doe"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-600 outline-none focus:border-sky-500/50 focus:bg-white/10 transition-all"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-400 ml-1">Email Address</label>
-                    <div className="relative group">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500 group-focus-within:text-sky-400 transition-colors">
-                        <AtSign className="w-5 h-5" />
-                      </div>
-                      <input
-                        type="email"
-                        placeholder="john@example.com"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-600 outline-none focus:border-sky-500/50 focus:bg-white/10 transition-all"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-400 ml-1">Message</label>
-                  <textarea
-                    rows={5}
-                    placeholder="Tell me about your project..."
-                    className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder:text-gray-600 outline-none focus:border-sky-500/50 focus:bg-white/10 transition-all resize-none"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full group relative overflow-hidden rounded-xl bg-sky-500 py-4 text-black font-bold text-lg hover:bg-sky-400 transition-all active:scale-[0.98]"
+              {status === "success" ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="py-20 text-center space-y-6"
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    Send Message
-                    <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </span>
-                  {/* Hover shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite] pointer-events-none"></div>
-                </button>
-              </form>
+                  <div className="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-8 border border-green-500/20">
+                    <CheckCircle2 size={40} />
+                  </div>
+                  <h3 className="text-3xl font-bold text-white">Message Sent!</h3>
+                  <p className="text-gray-400 max-w-xs mx-auto">
+                    Thank you for reaching out. I'll get back to you as soon as possible.
+                  </p>
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="px-8 py-3 rounded-full bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-all"
+                  >
+                    Send Another
+                  </button>
+                </motion.div>
+              ) : (
+                <>
+                  <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                    <MessageSquare className="text-sky-400 w-6 h-6" />
+                    Send a Message
+                  </h3>
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-400 ml-1">Full Name</label>
+                        <div className="relative group">
+                          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500 group-focus-within:text-sky-400 transition-colors">
+                            <User className="w-5 h-5" />
+                          </div>
+                          <input
+                            required
+                            type="text"
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            placeholder="John Doe"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-600 outline-none focus:border-sky-500/50 focus:bg-white/10 transition-all"
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-400 ml-1">Email Address</label>
+                        <div className="relative group">
+                          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500 group-focus-within:text-sky-400 transition-colors">
+                            <AtSign className="w-5 h-5" />
+                          </div>
+                          <input
+                            required
+                            type="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            placeholder="john@example.com"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-600 outline-none focus:border-sky-500/50 focus:bg-white/10 transition-all"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-400 ml-1">Message</label>
+                      <textarea
+                        required
+                        rows={5}
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        placeholder="Tell me about your project..."
+                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder:text-gray-600 outline-none focus:border-sky-500/50 focus:bg-white/10 transition-all resize-none"
+                      ></textarea>
+                    </div>
+
+                    {status === "error" && (
+                      <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm flex items-center gap-3">
+                        <AlertCircle size={18} />
+                        Failed to send message. Please try again.
+                      </div>
+                    )}
+
+                    <button
+                      disabled={status === "loading"}
+                      type="submit"
+                      className="w-full group relative overflow-hidden rounded-xl bg-sky-500 py-4 text-black font-bold text-lg hover:bg-sky-400 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        {status === "loading" ? "Initializing..." : "Send Message"}
+                        <Send className={`w-5 h-5 transition-transform ${status === "loading" ? "animate-pulse" : "group-hover:translate-x-1 group-hover:-translate-y-1"}`} />
+                      </span>
+                      {/* Hover shine effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite] pointer-events-none"></div>
+                    </button>
+                  </form>
+                </>
+              )}
             </div>
           </motion.div>
 

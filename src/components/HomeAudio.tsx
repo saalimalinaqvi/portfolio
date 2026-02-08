@@ -6,30 +6,40 @@ export default function HomeAudio() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (sessionStorage.getItem("audio_played") === "true") return;
+    // Check if audio has already played in this browser
+    if (localStorage.getItem("intro_audio_played") === "true") return;
 
-    const unlockAudio = () => {
+    const playAudio = () => {
       if (!audioRef.current) return;
 
       audioRef.current
         .play()
         .then(() => {
-          sessionStorage.setItem("audio_played", "true");
-          window.removeEventListener("click", unlockAudio);
-          window.removeEventListener("touchstart", unlockAudio);
+          // Set flag so it never plays again
+          localStorage.setItem("intro_audio_played", "true");
+
+          // Cleanup listeners after successful start
+          window.removeEventListener("mousedown", playAudio);
+          window.removeEventListener("touchstart", playAudio);
+          window.removeEventListener("keydown", playAudio);
         })
         .catch(() => {
-          // browser still blocking, ignore silently
+          // Browser blocked autoplay, wait for interaction
         });
     };
 
-    // 🔓 wait for first user interaction
-    window.addEventListener("click", unlockAudio);
-    window.addEventListener("touchstart", unlockAudio);
+    // Try playing immediately
+    playAudio();
+
+    // Fallback listeners for interaction unlock
+    window.addEventListener("mousedown", playAudio);
+    window.addEventListener("touchstart", playAudio);
+    window.addEventListener("keydown", playAudio);
 
     return () => {
-      window.removeEventListener("click", unlockAudio);
-      window.removeEventListener("touchstart", unlockAudio);
+      window.removeEventListener("mousedown", playAudio);
+      window.removeEventListener("touchstart", playAudio);
+      window.removeEventListener("keydown", playAudio);
     };
   }, []);
 
