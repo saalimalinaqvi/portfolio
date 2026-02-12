@@ -192,7 +192,7 @@ export default function ContactPage() {
                             type="text"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            placeholder="John Doe"
+                            placeholder="Your Good Name Please"
                             className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-600 outline-none focus:border-sky-500/50 focus:bg-white/10 transition-all"
                           />
                         </div>
@@ -208,7 +208,7 @@ export default function ContactPage() {
                             type="email"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            placeholder="john@example.com"
+                            placeholder="Your Email Please"
                             className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-600 outline-none focus:border-sky-500/50 focus:bg-white/10 transition-all"
                           />
                         </div>
@@ -222,7 +222,7 @@ export default function ContactPage() {
                         rows={5}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder="Tell me about your project..."
+                        placeholder="Your Message Please"
                         className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder:text-gray-600 outline-none focus:border-sky-500/50 focus:bg-white/10 transition-all resize-none"
                       ></textarea>
                     </div>
